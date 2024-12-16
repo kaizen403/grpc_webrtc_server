@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+service StudyCall {
+  rpc InitiateCall (CallRequest) returns (CallResponse);
+  rpc EndCall (CallEndRequest) returns (CallEndResponse);
+  rpc ExchangeSDP (SDPRequest) returns (SDPResponse);
+  rpc ExchangeICE (ICERequest) returns (ICEResponse);
+}
+
+message CallRequest {
+  string userId = 1;
+}
+
+message CallResponse {
+  string sessionId = 1;
+}
+
+message CallEndRequest {
+  string sessionId = 1;
+}
+
+message CallEndResponse {
+  bool success = 1;
+}
+
+message SDPRequest {
+  string sessionId = 1;
+  string sdp = 2;
+}
+
+message SDPResponse {
+  string sdp = 1;
+}
+
+message ICERequest {
+  string sessionId = 1;
+  string candidate = 2;
+}
+
+message ICEResponse {
+  string candidate = 1;
+}
+
